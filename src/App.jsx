@@ -21,12 +21,13 @@ const generateGraph = (data) => {
       id,
       data: {
         label: (
-          <div style={{ textAlign: "center" }}>
-            <strong>{item.state}</strong>
-            <br />
-            {item.time}
-            <br />
-            {item.branch && <em>{item.branch}</em>}
+          <div>
+            <div style={{position:"absolute", top:"-25px"}}>{item.branch && <em>{item.branch}</em>}</div>
+            <div style={{ textAlign: "center" }}>
+              <strong>{item.state}</strong>
+              <br />
+              <small>{item.time}</small>
+            </div>
           </div>
         ),
       },
