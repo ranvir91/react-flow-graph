@@ -7,12 +7,22 @@ import jsondata from "./assets/input.json";
 let lifecycle = jsondata.lifecyle;
 
 // Function to generate nodes and edges for the graph
+
+const getBranchUnique = [];
+lifecycle.forEach((item) => {
+  if(!getBranchUnique.includes(item.branch)) {
+    getBranchUnique.push(item.branch);
+  }
+});
+console.log(getBranchUnique);
+
 const generateGraph = (data) => {
   const nodes = [];
   const edges = [];
 
   let lastNullBranchNodeId = null; // Tracks the last node for the "null" branch
   const branchLastNode = {}; // Tracks the last node for each branch
+  
 
   data.forEach((item, index) => {
     // Create node
@@ -31,7 +41,11 @@ const generateGraph = (data) => {
           </div>
         ),
       },
-      position: { x: 200 * (item.branch ? (item.branch === "Frontend" ? 1 : 2) : 0), y: index * 100 },
+      // position: { x: 200 * (item.branch ? (item.branch === "Frontend" ? 1 : 2) : 0), y: index * 100 },
+      position: { 
+        x: 200 * getBranchUnique.indexOf(item.branch) , 
+        y: index * 100
+      },
     };
     nodes.push(node);
 
